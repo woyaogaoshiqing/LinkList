@@ -28,6 +28,9 @@ int linklistInit( linklist **pList)
     memset(list->head, 0, sizeof(linklist) * 1);
     list->head->data = 0;
     list->head->next = NULL;
+
+    /*初始化的时候，尾指针 = 头指针*/
+    list->tail = list->head;
     /*链表的长度为0*/
     list->len = 0;
     /*二级指针*/
@@ -74,34 +77,83 @@ int linklistAppointPosInser(linklist *pList,int pos, ELEMENTTYPE val)
 #else
 
 #endif
-    while (pos)
+    int flag = 0;
+    /* 这种情况下需要更改尾指针 */
+    if (pos == pList->len)
     {
-        TravelNode = TravelNode->next;
-        pos--;
+        /* 修改结点指向 */
+        TravelNode = pList->tail;
+#if 0
+        newNode->next = travelNode->next;   // 1
+        travelNode->next = newNode;         // 2
+#endif
+        flag = 1;
     }
-    nuwNode->next = TravelNode->next;
-    TravelNode->next = nuwNode;
-    /*更新链表长度*/
+    else
+    {
+        while (pos)
+        {
+            TravelNode = TravelNode->next;
+            pos--;
+        }
+    }
+    nuwNode->next = TravelNode->next;       // 1
+    TravelNode->next = nuwNode;             // 2
+    if (flag)
+    {
+        /* 尾指针更新位置 */
+        pList->tail = nuwNode;
+    }
+
+    /* 更新链表的长度 */
     (pList->len)++;
     return ret;
 }
 
+
 /*链表头删*/
 int linklistheadDel(linklist *pList)
 {
-
+    return LinkListDelAppointData(pList, 1);
 }
 
 /*链表尾删*/
 int linklisttaiDel(linklist *pList)
 {
-
+    return LinkListDelAppointData(pList, pList->len);
 }
 
 /*链表指定位置删*/
 int linklistAppointPosDel(linklist *pList, int pos)
 {
+    int ret = 0;
+    if (pList == NULL)
+    {
+        return NULL_PTR;
+    }
+    if (pos < 0 || pos > pList->len)
+    {
+        return INVAILD_ACCESS;
+    }
+    linkNode * traveNode = pList->head;
+    while (--pos)
+    {
+        traveNode = traveNode->next;
+        //pos--;
+    }
+    //跳出循环找到的是哪一个节点
+    linkNode * needDelNode = traveNode->next;
+    traveNode->next = needDelNode->next;
 
+    /*释放内存*/
+    if (needDelNode != NULL)
+    {
+        free(needDelNode);
+        needDelNode = NULL;
+    }
+    
+    (pList->len)--;
+    return ret;
 }
 
 /* 链表删除指定的数据 */

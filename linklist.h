@@ -23,7 +23,7 @@ typedef struct linklist
 {
     
     linkNode * head;
-
+    linkNode * tail; 
     int len;
 }linklist;
 /*链表初始化*/
