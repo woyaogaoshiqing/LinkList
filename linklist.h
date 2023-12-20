@@ -55,4 +55,7 @@ int linklistGetlenght(linklist *pList, int *pSize);
 
 /*链表的销毁*/
 int LinkListDestroy(linklist *pList);
+
+/*链表遍历接口*/
+int linklistForeach(linklist *pList);
 #endif  //__LINKLIST_H_
