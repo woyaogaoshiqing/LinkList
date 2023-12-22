@@ -1,5 +1,5 @@
-#ifndef __LINKLIST_H_
-#define __LINKLIST_H_
+#ifndef __Doublelinklist_H_
+#define __Doublelinklist_H_
 #define ELEMENTTYPE void*
 /*链表节点*/
 typedef  struct  DoublelinkNode
@@ -30,43 +30,43 @@ typedef struct stuInfo
     char sex;
 } stuInfo;
 /*链表*/
-typedef struct linklist
+typedef struct Doublelinklist
 {
     
     DoublelinkNode * head;
     DoublelinkNode * tail; 
     int len;
-}linklist;
+}Doublelinklist;
 /*链表初始化*/
-int linklistInit( linklist **pList);
+int DoublelinklistInit( Doublelinklist **pList);
 
 /*头插*/
-int linklistHeadInser(linklist *pList, ELEMENTTYPE val);
+int DoublelinklistHeadInser(Doublelinklist *pList, ELEMENTTYPE val);
 
 /*尾插*/
-int linklisttaiInser(linklist *pList, ELEMENTTYPE val);
+int DoublelinklisttaiInser(Doublelinklist *pList, ELEMENTTYPE val);
 
 /*链表指定位置插入*/
-int linklistAppointPosInsert(linklist *pList,int pos, ELEMENTTYPE val);
+int DoublelinklistAppointPosInsert(Doublelinklist *pList,int pos, ELEMENTTYPE val);
 
 /*链表头删*/
-int linklistheadDel(linklist *pList);
+int DoublelinklistheadDel(Doublelinklist *pList);
 
 /*链表尾删*/
-int linklisttaiDel(linklist *pList);
+int DoublelinklisttaiDel(Doublelinklist *pList);
 
 /*链表指定位置删*/
-int linklistAppointPosDel(linklist *pList, int pos);
+int DoublelinklistAppointPosDel(Doublelinklist *pList, int pos);
 
 /* 链表删除指定的数据 */
-int linklistDelAppointData(linklist *pList, ELEMENTTYPE val);
+int DoublelinklistDelAppointData(Doublelinklist *pList, ELEMENTTYPE val);
 
 /*获取链表的长度*/
-int linklistGetlength(linklist *pList, int *pSize);
+int DoublelinklistGetlength(Doublelinklist *pList, int *pSize);
 
 /*链表的销毁*/
-int LinkListDestroy(linklist *pList);
+int DoublelinklistDestroy(Doublelinklist *pList);
 
 /*链表遍历接口*/
-int linklistForeach(linklist *pList, int(*printFunc)(ELEMENTTYPE));
-#endif  //__LINKLIST_H_
+int DoublelinklistForeach(Doublelinklist *pList, int(*printFunc)(ELEMENTTYPE));
+#endif  //__Doublelinklist_H_

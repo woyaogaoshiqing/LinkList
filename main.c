@@ -32,16 +32,16 @@ int main()
 {
 #if 1
 
-    linklist * list = NULL;
-    linklistInit(&list);
+    Doublelinklist * list = NULL;
+    DoublelinklistInit(&list);
 #else    
     for(int idx = 0; idx < BUFFER_SIZE; idx++)
     {
-    linklistHeadInser(list,idx);
+    DoublelinklistHeadInser(list,idx);
     }
     /*获取链表的长度*/
     int size = 0;
-    linklistGetlength(list, &size);
+    DoublelinklistGetlength(list, &size);
     printf("%d\n",size);
 
     
@@ -64,10 +64,10 @@ stuInfo stu1, stu2, stu3;
 
     for(int idx = 0; idx < BUFFER_SIZE; idx++)
     {
-        linklistHeadInser(list,(void*)&buffer[idx]);
+        DoublelinklistHeadInser(list,(void*)&buffer[idx]);
     }
     /**/
-    linklistForeach(list, printStruct);
+    DoublelinklistForeach(list, printStruct);
    
 #endif
     return 0;
